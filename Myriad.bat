@@ -102,6 +102,7 @@ set /p username=Username:
 echo.
 set /p password=Password:
 if %username% == xhays if %password% == 220207 goto UUIDREGISTER
+if %username% == awuen if %password% == sapo goto UUIDREGISTER
 
 goto ERROR
 echo.
@@ -315,6 +316,21 @@ goto LoginMenu
 
 :XhaysUUID
 set "XhaysW=A9ABB334-62B9-11EB-89B8-3C6409608300"
+set "Blacklisted=00000000-0000-0000-0000-111111111111"
+
+:: wmic csproduct get uuid
+for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
+    for /f "tokens=2 delims==" %%B in ("%%~A") do (
+        set "serialnumber=%%B"
+    )
+)
+
+if "%serialnumber%"=="!XhaysW!" goto LOGINMENUAC
+
+:UUIDREGISTER
+
+:XhaysUUID
+set "XhaysW=4D3FAA04-9443-E811-A4C3-9829A69842CD"
 set "Blacklisted=00000000-0000-0000-0000-111111111111"
 
 :: wmic csproduct get uuid
