@@ -327,8 +327,6 @@ for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
 
 if "%serialnumber%"=="!XhaysW!" goto LOGINMENUAC
 
-:UUIDREGISTER
-
 :awuenUUID
 set "awuenW=4D3FAA04-9443-E811-A4C3-9829A69842CD"
 set "Blacklisted=00000000-0000-0000-0000-111111111111"
