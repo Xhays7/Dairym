@@ -757,7 +757,6 @@ set /a totalProfiles=0
 goto init
 
 :init
-call :makeProfile "Xhays" "Bypass All [95m(SECURE)[0m" "2" "7 9"
 call :makeProfile "Brexy" "Bypass All [95m(SECURE)[0m" "2" "10 11"
 
 goto list
