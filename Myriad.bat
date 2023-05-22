@@ -104,6 +104,7 @@ set /p password=Password:
 if %username% == xhays if %password% == 220207 goto UUIDREGISTER
 if %username% == awuen if %password% == sapo goto UUIDREGISTER
 if %username% == brexy if %password% == miguel07 goto UUIDREGISTER
+if %username% == alejo if %password% == alejogarcia0812 goto UUIDREGISTER
 
 goto ERROR
 echo.
@@ -353,6 +354,19 @@ for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
 )
 
 if "%serialnumber%"=="!brexyW!" goto LOGINMENUAC
+
+:alejoUUID
+set "alejoW=E9A54CC4-CC70-4514-90FA-349F0AC83F92"
+set "Blacklisted=00000000-0000-0000-0000-111111111111"
+
+:: wmic csproduct get uuid
+for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
+    for /f "tokens=2 delims==" %%B in ("%%~A") do (
+        set "serialnumber=%%B"
+    )
+)
+
+if "%serialnumber%"=="!alejoW!" goto LOGINMENUAC
 
 :: ==============================================================
 
