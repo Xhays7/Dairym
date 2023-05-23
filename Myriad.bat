@@ -776,6 +776,7 @@ call :makeProfile "SineA" "Up to 5 variation [93m(SECURE)[0m" "1" "17 17"
 call :makeProfile "AstralMC" "Up to 5 variation [93m(SECURE)[0m" "1" "17 17"
 call :makeProfile "Minemen" "Up to 5 variation [93m(SECURE)[0m" "1" "19 20"
 
+
 goto list
 
 :banner
@@ -1135,6 +1136,92 @@ namespace n$namespace
                                 double maxDelay = 1000 / MaximumCPS;
                                 if (cpsDrop > 0)
                                     maxDelay += GetRandomDouble(1, 22);
+                                double average = (maxDelay + minDelay) / 2;
+                                double halfDifference = (minDelay - maxDelay) / 2;
+                                double delay = Math.Sin(sinX) * halfDifference + average;
+                                sinX += GetRandomDouble(GetRandomDouble(0.03, 0.1), GetRandomDouble(0.69, 1.24));
+                                
+                                // 0x0084 = WM_NCHITTEST
+                                if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
+                                {
+                                    lastDelay = (((int)delay) >> 1) - dif;
+                                    if (lastDelay < 0 || lastDelay == Int32.MaxValue) lastDelay = 0;
+                                    SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                                    Thread.Sleep((int) lastDelay);
+                                    SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                                    Thread.Sleep((int) lastDelay);
+                                }
+                                lastEvent++;
+                            }
+                        }
+                    }
+                }
+                
+                if (!Binds()) running = false;
+            }
+            return;
+        }
+
+        public static void Minemen(string[] args) {
+            bool running = true;
+            
+            StatusRow = Console.CursorTop;
+            
+            int MinimumCPS = Int32.Parse(args[4]);
+            int MaximumCPS = Int32.Parse(args[5]);
+            if (MinOverMaxCheck(MinimumCPS, MaximumCPS)) return;
+            
+            long lastLoopRun = 0;
+            long now = 0;
+            long dif = 0;
+            long lastDelay = 0;
+            
+            long cpsSpike = 0;
+            long cpsDrop = 0;
+            long lastEvent = -15;
+            double sinX = 0;
+            
+            DrawStatus(StatusRow, ClickerEnabled);
+            
+            while (running)
+            {
+                ForegroundWindow = GetForegroundWindow();
+                MCWindow = FindWindow("LWJGL", null);
+                
+                // Clicker code
+                if (ClickerEnabled)
+                {
+                    if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
+                    {
+                        if (MCWindow == ForegroundWindow)
+                        {
+                            if (lastLoopRun == 0) {
+                                lastLoopRun = GetSystemTime();
+                            } else {
+                                now = GetSystemTime();
+                                dif = (now - lastLoopRun) >> 1;
+                                dif -= lastDelay;
+                                lastLoopRun = now;
+                                
+                                if (cpsDrop > 0) cpsDrop--;
+                                if (cpsSpike > 0) cpsSpike--;
+                                
+                                if (lastEvent > 0) {
+                                    if (rand.Next(0, 100 / (int) lastEvent) == 0) {
+                                        cpsSpike = 25;
+                                        lastEvent = -20;
+                                    } else if (rand.Next(0, 100 / (int) lastEvent) == 0) {
+                                        cpsDrop = 50;
+                                        lastEvent = -30;
+                                    }
+                                }
+                                
+                                double minDelay = 1000 / MinimumCPS;
+                                if (cpsSpike > 0)
+                                    minDelay -= GetRandomDouble(1, 15);
+                                double maxDelay = 1000 / MaximumCPS;
+                                if (cpsDrop > 0)
+                                    maxDelay += GetRandomDouble(1, 15);
                                 double average = (maxDelay + minDelay) / 2;
                                 double halfDifference = (minDelay - maxDelay) / 2;
                                 double delay = Math.Sin(sinX) * halfDifference + average;
