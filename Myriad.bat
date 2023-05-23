@@ -771,7 +771,10 @@ set /a totalProfiles=0
 goto init
 
 :init
-call :makeProfile "Xhays" "Bypass All [95m(SECURE)[0m" "2" "10 12"
+call :makeProfile "Xhays" "Bypass All [95m(SECURE)[0m" "2" "8 10"
+call :makeProfile "SineA" "Up to 5 variation [93m(SECURE)[0m" "1" "17 17"
+call :makeProfile "AstralMC" "Up to 5 variation [93m(SECURE)[0m" "1" "17 17"
+call :makeProfile "Minemen" "Up to 5 variation [93m(SECURE)[0m" "1" "19 20"
 
 goto list
 
@@ -1227,21 +1230,13 @@ namespace n$namespace
             {
                 Sine(args);
             }
-            else if (profile.Contains("CPSCAP"))
-            {
-                CPSCAP(args);
-            }
-                else if (profile.Contains("Minemen"))
+            else if (profile.Contains("AstralMC"))
             {
                 Sine(args);
             }
-                else if (profile.Contains("AstralMC"))
+            else if (profile.Contains("Minemen"))
             {
-                Sine(args);
-            }
-                else if (profile.Contains("HolyPvP"))
-            {
-                CPSCAP(args);
+                Minemen(args);
             }
             else
             {
