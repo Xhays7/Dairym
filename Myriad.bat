@@ -773,7 +773,7 @@ goto init
 :init
 call :makeProfile "Xhays" "Bypass All [95m(SECURE)[0m" "2" "8 10"
 call :makeProfile "SineA" "Up to 5 variation [93m(SECURE)[0m" "1" "17 17"
-call :makeProfile "AstralMC" "Up to 5 variation [93m(SECURE)[0m" "1" "17 17"
+call :makeProfile "AstralMC" "Up to 5 variation [93m(SECURE)[0m" "1" "16 17"
 call :makeProfile "Minemen" "Up to 5 variation [93m(SECURE)[0m" "1" "19 20"
 
 
