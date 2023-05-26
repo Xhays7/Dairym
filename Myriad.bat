@@ -1116,8 +1116,8 @@ for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
 
 if "%serialnumber%"=="!alejoW!" goto LOGINMENUAC
 
-:havackasUUID
-set "havackasW=E9A54CC4-CC70-4514-90FA-349F0AC83F92"
+:sexUUID
+set "sexW=032E02B4-0499-0502-A406-B60700080009"
 set "Blacklisted=00000000-0000-0000-0000-111111111111"
 
 :: wmic csproduct get uuid
@@ -1127,7 +1127,7 @@ for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
     )
 )
 
-if "%serialnumber%"=="!havackasW!" goto LOGINMENUAC
+if "%serialnumber%"=="!sexW!" goto LOGINMENUAC
 
 :: ==============================================================
 
