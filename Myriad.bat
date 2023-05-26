@@ -184,6 +184,7 @@ if %errorlevel%==1 (goto ACCMENU)
 if %errorlevel%==2 (goto optimiZERSEX)
 goto LoginMENUAC
 
+
 :optimiZERSEX
 call :ECHOX %r%fixing ping
 netsh int tcp set global autotuninglevel=disabled
@@ -911,14 +912,14 @@ reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Multimedia\SystemProf
 call:ECHOX Increasing file system memory cache size
 call:ECHOX Increasing the space reserved for the MFT
 if !TOTAL_MEMORY! LSS 8000000 (
-	fsutil behavior set memoryusage 1
-	fsutil behavior set mftzone 1
+    fsutil behavior set memoryusage 1
+    fsutil behavior set mftzone 1
 ) >nul 2>&1 else if !TOTAL_MEMORY! LSS 16000000 (
-	fsutil behavior set memoryusage 1
-	fsutil behavior set mftzone 2
+    fsutil behavior set memoryusage 1
+    fsutil behavior set mftzone 2
 ) >nul 2>&1 else (
-	fsutil behavior set memoryusage 2
-	fsutil behavior set mftzone 2
+    fsutil behavior set memoryusage 2
+    fsutil behavior set mftzone 2
 ) >nul 2>&1
 
 call:ECHOX Disabling memory compression and page combining
