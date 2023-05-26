@@ -105,7 +105,7 @@ if %username% == xhays if %password% == 220207 goto UUIDREGISTER
 if %username% == awuen if %password% == sapo goto UUIDREGISTER
 if %username% == brexy if %password% == miguel07 goto UUIDREGISTER
 if %username% == alejo if %password% == alejogarcia0812 goto UUIDREGISTER
-if %username% == havackas if %password% == JoaPas2019xD goto UUIDREGISTER
+if %username% == havackas if %password% == joapas2019xd goto UUIDREGISTER
 
 goto ERROR
 echo.
