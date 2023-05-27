@@ -782,11 +782,12 @@ setlocal enableDelayedExpansion
 set /a totalProfiles=0
 goto init
 
-:init
-call :makeProfile "Xhays" "Bypass All [95m(SECURE)[0m" "2" "8 10"
-call :makeProfile "SineA" "Up to 5 variation [93m(SECURE)[0m" "1" "17 17"
-call :makeProfile "AstralMC" "Up to 5 variation [93m(SECURE)[0m" "1" "16 17"
-call :makeProfile "Minemen" "Up to 5 variation [93m(SECURE)[0m" "1" "19 20"
+call :makeProfile "NormalCPS" "[93m[Testing][0m" "2" "12 16"
+call :makeProfile "AstralMC" "[92m[SECURE][0m" "1" "16 17"
+call :makeProfile "Minemen" "[92m[SECURE][0m" "1" "19 19"
+call :makeProfile "PvPLand" "[93m[Testing][0m" "1" "16 20"
+call :makeProfile "SoloLegends" "[93m[Testing][0m" "1" "14-20.txt"
+
 
 
 goto list
@@ -1034,9 +1035,8 @@ namespace n$namespace
             }
             return ReturnValue;
         }
-        
-        public static void Xhays(string[] args)
-        {
+
+        public static void NormalCPS(string[] args) {
             bool running = true;
             
             StatusRow = Console.CursorTop;
@@ -1044,6 +1044,17 @@ namespace n$namespace
             int MinimumCPS = Int32.Parse(args[4]);
             int MaximumCPS = Int32.Parse(args[5]);
             if (MinOverMaxCheck(MinimumCPS, MaximumCPS)) return;
+            
+            long lastLoopRun = 0;
+            long now = 0;
+            long dif = 0;
+            long lastDelay = 0;
+            
+            long cpsSpike = 0;
+            long cpsDrop = 0;
+            long lastEvent = -15;
+            double sinX = 0;
+            
             DrawStatus(StatusRow, ClickerEnabled);
             
             while (running)
@@ -1058,26 +1069,49 @@ namespace n$namespace
                     {
                         if (MCWindow == ForegroundWindow)
                         {
-                            // 0x0084 = WM_NCHITTEST
-                            if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
-                            {
-                                if (rand.Next(1, 7) == 1)
-                                {
-                                    if (rand.Next(1, 11) <= 1) Thread.Sleep(rand.Next((1000 / MaximumCPS), (1000 / MinimumCPS)) - (rand.Next(3, 32)) >> 2);
-                                    else Thread.Sleep(rand.Next((1000 / MaximumCPS), (1000 / MinimumCPS)) >> 1);
+                            if (lastLoopRun == 0) {
+                                lastLoopRun = GetSystemTime();
+                            } else {
+                                now = GetSystemTime();
+                                dif = (now - lastLoopRun) >> 1;
+                                dif -= lastDelay;
+                                lastLoopRun = now;
+                                
+                                if (cpsDrop > 0) cpsDrop--;
+                                if (cpsSpike > 0) cpsSpike--;
+                                
+                                if (lastEvent > 0) {
+                                    if (rand.Next(0, 41 / (int) lastEvent) == 0) {
+                                        cpsSpike = 20;
+                                        lastEvent = -17;
+                                    } else if (rand.Next(0, 67 / (int) lastEvent) == 0) {
+                                        cpsDrop = 21;
+                                        lastEvent = -16;
+                                    }
                                 }
-                                else
+                                
+                                double minDelay = 1000 / MinimumCPS;
+                                if (cpsSpike > 1)
+                                    minDelay -= GetRandomDouble(1, 25);
+                                double maxDelay = 1000 / MaximumCPS;
+                                if (cpsDrop > 0)
+                                    maxDelay += GetRandomDouble(1, 22);
+                                double average = (maxDelay + minDelay) / 2;
+                                double halfDifference = (minDelay - maxDelay) / 2;
+                                double delay = Math.Sin(sinX) * halfDifference + average;
+                                sinX += GetRandomDouble(GetRandomDouble(0.03, 0.1), GetRandomDouble(0.69, 1.24));
+                                
+                                // 0x0084 = WM_NCHITTEST
+                                if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
                                 {
-                                    SendMessage((IntPtr) ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    
-                                    if (rand.Next(1, 4) <= 1) Thread.Sleep(rand.Next((1000 / MaximumCPS), (1000 / MinimumCPS)) - (rand.Next(11, 32)) >> 1);
-                                    else Thread.Sleep(rand.Next((1000 / MaximumCPS), (1000 / MinimumCPS)) >> 3);
-                                        
-                                    SendMessage((IntPtr) ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    
-                                    if (rand.Next(1, 9) <= 1) Thread.Sleep(rand.Next((1000 / MaximumCPS), (1000 / MinimumCPS)) - (rand.Next(5, 32)) >> 1);
-                                    else Thread.Sleep(rand.Next((1000 / MaximumCPS), (1000 / MinimumCPS)) >> 2);
+                                    lastDelay = (((int)delay) >> 1) - dif;
+                                    if (lastDelay < 0 || lastDelay == Int32.MaxValue) lastDelay = 0;
+                                    SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                                    Thread.Sleep((int) lastDelay);
+                                    SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                                    Thread.Sleep((int) lastDelay);
                                 }
+                                lastEvent++;
                             }
                         }
                     }
@@ -1088,7 +1122,7 @@ namespace n$namespace
             return;
         }
 
-        public static void Sine(string[] args) {
+        public static void AstralMC(string[] args) {
             bool running = true;
             
             StatusRow = Console.CursorTop;
@@ -1191,7 +1225,7 @@ namespace n$namespace
             long cpsSpike = 0;
             long cpsDrop = 0;
             long lastEvent = -15;
-            double sinX = 0;
+            double sinX = 1;
             
             DrawStatus(StatusRow, ClickerEnabled);
             
@@ -1220,11 +1254,11 @@ namespace n$namespace
                                 
                                 if (lastEvent > 0) {
                                     if (rand.Next(0, 100 / (int) lastEvent) == 0) {
-                                        cpsSpike = 25;
-                                        lastEvent = -20;
+                                        cpsSpike = 57;
+                                        lastEvent = 20;
                                     } else if (rand.Next(0, 100 / (int) lastEvent) == 0) {
-                                        cpsDrop = 50;
-                                        lastEvent = -30;
+                                        cpsDrop = 74;
+                                        lastEvent = 30;
                                     }
                                 }
                                 
@@ -1234,6 +1268,92 @@ namespace n$namespace
                                 double maxDelay = 1000 / MaximumCPS;
                                 if (cpsDrop > 0)
                                     maxDelay += GetRandomDouble(1, 15);
+                                double average = (maxDelay + minDelay) / 2;
+                                double halfDifference = (minDelay - maxDelay) / 2;
+                                double delay = Math.Sin(sinX) * halfDifference + average;
+                                sinX += GetRandomDouble(GetRandomDouble(0.37, 0.3), GetRandomDouble(0.84, 1.37));
+                                
+                                // 0x0084 = WM_NCHITTEST
+                                if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
+                                {
+                                    lastDelay = (((int)delay) >> 1) - dif;
+                                    if (lastDelay < 0 || lastDelay == Int32.MaxValue) lastDelay = 0;
+                                    SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                                    Thread.Sleep((int) lastDelay);
+                                    SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                                    Thread.Sleep((int) lastDelay);
+                                }
+                                lastEvent++;
+                            }
+                        }
+                    }
+                }
+                
+                if (!Binds()) running = false;
+            }
+            return;
+        }
+
+            public static void PvPLand(string[] args) {
+            bool running = true;
+            
+            StatusRow = Console.CursorTop;
+            
+            int MinimumCPS = Int32.Parse(args[4]);
+            int MaximumCPS = Int32.Parse(args[5]);
+            if (MinOverMaxCheck(MinimumCPS, MaximumCPS)) return;
+            
+            long lastLoopRun = 0;
+            long now = 0;
+            long dif = 0;
+            long lastDelay = 0;
+            
+            long cpsSpike = 0;
+            long cpsDrop = 0;
+            long lastEvent = -15;
+            double sinX = 0;
+            
+            DrawStatus(StatusRow, ClickerEnabled);
+            
+            while (running)
+            {
+                ForegroundWindow = GetForegroundWindow();
+                MCWindow = FindWindow("LWJGL", null);
+                
+                // Clicker code
+                if (ClickerEnabled)
+                {
+                    if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
+                    {
+                        if (MCWindow == ForegroundWindow)
+                        {
+                            if (lastLoopRun == 0) {
+                                lastLoopRun = GetSystemTime();
+                            } else {
+                                now = GetSystemTime();
+                                dif = (now - lastLoopRun) >> 1;
+                                dif -= lastDelay;
+                                lastLoopRun = now;
+                                
+                                if (cpsDrop > 0) cpsDrop--;
+                                if (cpsSpike > 0) cpsSpike--;
+                                
+                                if (lastEvent > 0) {
+                                    if (rand.Next(0, 41 / (int) lastEvent) == 0) {
+                                        cpsSpike = 20;
+                                        lastEvent = -17;
+                                    } else if (rand.Next(0, 67 / (int) lastEvent) == 0) {
+                                        cpsDrop = 21;
+                                        lastEvent = -16;
+                                    }
+                                }
+                                
+                                double minDelay = 1000 / MinimumCPS;
+                                if (cpsSpike > 1)
+                                    minDelay -= GetRandomDouble(1, 25);
+                                double maxDelay = 1000 / MaximumCPS;
+                                if (cpsDrop > 0)
+                                    maxDelay += GetRandomDouble(1, 22);
                                 double average = (maxDelay + minDelay) / 2;
                                 double halfDifference = (minDelay - maxDelay) / 2;
                                 double delay = Math.Sin(sinX) * halfDifference + average;
@@ -1260,20 +1380,50 @@ namespace n$namespace
             return;
         }
 
-        public static void CPSCAP(string[] args)
-        {
+        public static void SoloLegends(string[] args) {
             bool running = true;
+            List<int> ClickTimes = new List<int>();
             
             StatusRow = Console.CursorTop;
             
-            int MinimumCPS = Int32.Parse(args[4]);
-            int MaximumCPS = Int32.Parse(args[5]);
-            if (MinOverMaxCheck(MinimumCPS, MaximumCPS)) return;
-            DrawStatus(StatusRow, ClickerEnabled);
+            if (BitConverter.ToBoolean(BitConverter.GetBytes(File.Exists(args[4])), 0))
+            {
+                using (StreamReader sr = File.OpenText(args[4]))
+                {
+                    string s;
+                    while ((s = sr.ReadLine()) != null)
+                    {
+                        try
+                        {
+                            int num = Int32.Parse(s);
+                            if (num > 0)
+                                ClickTimes.Add(num);
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Cannot parse '{input}'");
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("There was an error loading '{0}'.", args[4]);
+                return;
+            }
             
-            bool ButtonUpOrDown = false; // false = down, true = up
+            if (ClickTimes.Count < 50)
+            {
+                Console.WriteLine("Too few click times in '{0}'.", args[4]);
+                return;
+            }
+            
+            bool ChangeStartingPoint = false;
+            int ClickingPoint = rand.Next(1, ClickTimes.Count / 4);
             long ClickWaitTill = 0;
             long RightNow = GetSystemTime();
+            
+            DrawStatus(StatusRow, ClickerEnabled, "Starting Point", ClickingPoint);
             
             while (running)
             {
@@ -1291,19 +1441,34 @@ namespace n$namespace
                             if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
                             {
                                 RightNow = GetSystemTime();
+                                ChangeStartingPoint = true;
                                 if (RightNow >= ClickWaitTill)
                                 {
-                                    if (ButtonUpOrDown) SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    else SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    ButtonUpOrDown = !ButtonUpOrDown;
+                                    SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                                    SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
                                     
-                                    int SleepTime = rand.Next((500 / MaximumCPS), (500 / MinimumCPS));
-                                    ClickWaitTill = RightNow + SleepTime;
+                                    if (ClickingPoint == ClickTimes.Count - 1)
+                                        ClickingPoint = rand.Next(1, ClickTimes.Count / 4);
+                                    else
+                                        ClickingPoint += 1;
+                                    
+                                    ClickWaitTill = RightNow + ClickTimes[ClickingPoint];
                                 }
                             }
                         }
                     }
-                    else ButtonUpOrDown = false;
+                    else if (ChangeStartingPoint)
+                    {
+                        ChangeStartingPoint = false;
+                        ClickingPoint = rand.Next(1, ClickTimes.Count / 4);
+                        DrawStatus(StatusRow, ClickerEnabled, "Starting Point", ClickingPoint);
+                        ClickWaitTill = 0;
+                        Thread.Sleep(1);
+                    }
+                    else
+                    {
+                        Thread.Sleep(1);
+                    }
                 }
                 
                 if (!Binds()) running = false;
@@ -1321,21 +1486,25 @@ namespace n$namespace
             
             Init(args[1], args[2], args[3]);
             
-            if (profile.Contains("Xhays"))
+            if (profile.Contains("NormalCPS"))
             {
-                Xhays(args);
-            }
-            else if (profile.Contains("Sine"))
-            {
-                Sine(args);
+                NormalCPS(args);
             }
             else if (profile.Contains("AstralMC"))
             {
-                Sine(args);
+                AstralMC(args);
             }
             else if (profile.Contains("Minemen"))
             {
                 Minemen(args);
+            }
+            else if (profile.Contains("PvPLand"))
+            {
+                PvPLand(args);
+            }
+            else if (profile.Contains("SoloLegends"))
+            {
+                SoloLegends(args);
             }
             else
             {
