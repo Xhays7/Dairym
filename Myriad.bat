@@ -47,13 +47,13 @@ color %color%
 title %title% > nul 2>&1
 type MyriadLogo.txt
 Batbox /h 0
-Call Button 10 7 "Log in" 26 7 "Register" 18 11 "Contact" # Press
+Call Button 10 7 "Log in" 26 7 "Register" 18 11 "Update" # Press
 Getinput /m %Press% /h 70
 
 :: Check for the pressed button 
 if %errorlevel%==1 (goto Username)
 if %errorlevel%==2 (goto Register)
-if %errorlevel%==3 (goto Contact)
+if %errorlevel%==3 (goto Update)
 goto MainMenu
 
 :Register
@@ -88,7 +88,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %b% Soon..
+echo                     %b% 5/27/2023
 timeout /t 3 >nul & cls & goto MainMenu
 
 
@@ -782,6 +782,7 @@ setlocal enableDelayedExpansion
 set /a totalProfiles=0
 goto init
 
+:init
 call :makeProfile "NormalCPS" "[93m[Testing][0m" "2" "12 16"
 call :makeProfile "AstralMC" "[92m[SECURE][0m" "1" "16 17"
 call :makeProfile "Minemen" "[92m[SECURE][0m" "1" "19 19"
