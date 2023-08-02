@@ -651,10 +651,9 @@ goto init
 
 :init
 call :makeProfile "Legit" "[92m[SECURE][0m" "1" "X.txt"
-:: call :makeProfile "AstralMC" "[92m[SECURE][0m" "1" "16 17"
-:: call :makeProfile "NormalCPS" "[93m[Testing][0m" "2" "12 16"
-:: call :makeProfile "Minemen" "[92m[SECURE][0m" "1" "19 19"
-:: call :makeProfile "PvPLand" "[93m[Testing][0m" "1" "16 20"
+call :makeProfile "AstralMC" "[92m[SECURE][0m" "1" "16 17"
+call :makeProfile "Minemen" "[92m[SECURE][0m" "1" "19 19"
+call :makeProfile "PvPLand" "[93m[Testing][0m" "1" "16 20"
 
 goto list
 
