@@ -108,6 +108,7 @@ echo.
 set /p password=Password:
 if %username% == xhays if %password% == 220207 goto UUIDREGISTER
 if %username% == awuen if %password% == sapo goto UUIDREGISTER
+if %username% == havackas if %password% == JoaPas2019xD goto UUIDREGISTER
 
 goto ERROR
 echo.
