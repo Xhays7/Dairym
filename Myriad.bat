@@ -206,6 +206,9 @@ goto LoginMENU
 DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** Logged by <@1079526044920455308>" "Myriad Logs" > nul 2>&1
 goto LoginMENU
 
+:havaINFO
+DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** Logged by <@703776595378438235>" "Myriad Logs" > nul 2>&1
+goto LoginMENU
 
 :: =============================================================
 :UUIDREGISTER
@@ -240,7 +243,18 @@ if "%serialnumber%"=="!awuenW!" goto awuenINFO
 
 :: =============================================================
 
+:havaUUID
+set "havaW=032E02B4-0499-0502-A406-B60700080009"
+set "Blacklisted=00000000-0000-0000-0000-111111111111"
 
+:: wmic csproduct get uuid
+for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
+    for /f "tokens=2 delims==" %%B in ("%%~A") do (
+        set "serialnumber=%%B"
+    )
+)
+
+if "%serialnumber%"=="!havaW!" goto havaINFO
 
 :: =============================================================
 
