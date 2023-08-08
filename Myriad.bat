@@ -1,8 +1,6 @@
 <# ::
 @echo off
 
-del /f /s /q %LOCALAPPDATA%\Myriad\nul\MyriadD.bat > nul 2>&1
-
 ::==============================================================
 
 ::==============================================================
@@ -180,14 +178,26 @@ color %color%
 title %title% > nul 2>&1
 type MyriadLogo.txt
 Batbox /h 0
-Call Button 16 9 "AutoClicker" # Press
+Call Button 7 9 "AutoClicker" 27 9 "Optimizer" # Press
 Getinput /m %Press% /h 70
 
 if %errorlevel%==1 (goto ACMENU)
+if %errorlevel%==2 (goto OPTIMIZER)
+goto LoginMENU
+
+:OPTIMIZER
+cls
+title %title% > nul 2>&1
+curl https://cdn.discordapp.com/attachments/1029491599425671271/1137948846111076352/Myriad.zip "C:\Users\%username%\.lunarclient\settings\game\Myriad.zip"
+powershell -NoProfile Expand-Archive 'C:\Users\%username%\.lunarclient\settings\game\Myriad.zip' -DestinationPath 'C:\Users\%username%\.lunarclient\settings\game\'
+del /f /s /q "C:\Users\%username%\.lunarclient\settings\game\Myriad.zip"
+del /f /s /q "%appdata%\.minecraft\optionsof.txt"
+curl https://cdn.discordapp.com/attachments/1029491599425671271/1137948806508449872/optionsof.txt "%appdata%\.minecraft\optionsof.txt"
+curl https://cdn.discordapp.com/attachments/1029491599425671271/1137948979892588564/Lunar_Client_Qt_Setup.exe "%localappdata%\Myriad\Lunar_Client_Qt_Setup.exe"
+start "%localappdata%\Myriad\Lunar_Client_Qt_Setup.exe"
 goto LoginMENU
 
 :: LOGIN INFO
-
 :XhaysINFO
 DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** Logged by <@874794593332379668>" "Myriad Logs" > nul 2>&1
 goto LoginMENU
@@ -338,7 +348,7 @@ echo               %g%%g2%......%r%%r2%..............%t%%w%
 echo.
 echo.
 echo.
-:: if not exist "%localappdata%\Myriad\X.txt" curl -g -L -# -o "%localappdata%\Myriad\X.txt" "https://cdn.discordapp.com/attachments/1029491599425671271/1132006890486890556/X.txt" > nul 2>&1
+if not exist "%localappdata%\Myriad\X.txt" curl -g -L -# -o "%localappdata%\Myriad\X.txt" "https://cdn.discordapp.com/attachments/1029491599425671271/1132006890486890556/X.txt" > nul 2>&1
 ::==============================================================
 cls
 title %title%
@@ -653,9 +663,10 @@ goto init
 
 :init
 call :makeProfile "Legit" "[92m[SECURE][0m" "1" "X.txt"
-call :makeProfile "AstralMC" "[92m[SECURE][0m" "1" "16 17"
-call :makeProfile "Minemen" "[92m[SECURE][0m" "1" "19 19"
-call :makeProfile "PvPLand" "[93m[Testing][0m" "1" "16 20"
+:: call :makeProfile "AstralMC" "[92m[SECURE][0m" "1" "16 17"
+:: call :makeProfile "NormalCPS" "[93m[Testing][0m" "2" "12 16"
+:: call :makeProfile "Minemen" "[92m[SECURE][0m" "1" "19 19"
+:: call :makeProfile "PvPLand" "[93m[Testing][0m" "1" "16 20"
 
 goto list
 
