@@ -179,7 +179,7 @@ color %color%
 title %title% > nul 2>&1
 type MyriadLogo.txt
 Batbox /h 0
-Call Button 7 9 "AutoClicker" 27 9 "Optimizer" # Press
+Call Button 7 9 "AutoClicker" 27 9 "Optimizers" # Press
 Getinput /m %Press% /h 70
 
 if %errorlevel%==1 (goto ACMENU)
