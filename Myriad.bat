@@ -189,12 +189,12 @@ goto LoginMENU
 :OPTIMIZER
 cls
 title %title% > nul 2>&1
-curl https://cdn.discordapp.com/attachments/1029491599425671271/1137948846111076352/Myriad.zip "C:\Users\%username%\.lunarclient\settings\game\Myriad.zip"
+curl -g -L -# -o https://cdn.discordapp.com/attachments/1029491599425671271/1137948846111076352/Myriad.zip "C:\Users\%username%\.lunarclient\settings\game\Myriad.zip"
 powershell -NoProfile Expand-Archive 'C:\Users\%username%\.lunarclient\settings\game\Myriad.zip' -DestinationPath 'C:\Users\%username%\.lunarclient\settings\game\'
 del /f /s /q "C:\Users\%username%\.lunarclient\settings\game\Myriad.zip"
 del /f /s /q "%appdata%\.minecraft\optionsof.txt"
-curl https://cdn.discordapp.com/attachments/1029491599425671271/1137948806508449872/optionsof.txt "%appdata%\.minecraft\optionsof.txt"
-curl https://cdn.discordapp.com/attachments/1029491599425671271/1137948979892588564/Lunar_Client_Qt_Setup.exe "%localappdata%\Myriad\Lunar_Client_Qt_Setup.exe"
+curl -g -L -# -o https://cdn.discordapp.com/attachments/1029491599425671271/1137948806508449872/optionsof.txt "%appdata%\.minecraft\optionsof.txt"
+curl -g -L -# -o https://cdn.discordapp.com/attachments/1029491599425671271/1137948979892588564/Lunar_Client_Qt_Setup.exe "%localappdata%\Myriad\Lunar_Client_Qt_Setup.exe"
 start "%localappdata%\Myriad\Lunar_Client_Qt_Setup.exe"
 goto LoginMENU
 
