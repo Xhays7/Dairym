@@ -183,7 +183,7 @@ Batbox /h 0
 Call Button 7 9 "AutoClicker" 27 9 "Optimizers" # Press
 Getinput /m %Press% /h 70
 
-if %errorlevel%==1 (goto ACMENU)
+if %errorlevel%==1 (goto AutoClicker)
 if %errorlevel%==2 (goto OPTIMIZER)
 goto LoginMENU
 
@@ -654,7 +654,7 @@ goto :eof
 
 ::==============================================================
 
-:ACMENU
+:AutoClicker
 cd "%localappdata%/Myriad" > nul 2>&1
 cls
 mode 53,13
