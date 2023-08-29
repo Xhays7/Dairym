@@ -109,6 +109,7 @@ set /p password=Password:
 if %username% == xhays if %password% == 220207 goto UUIDREGISTER
 if %username% == awuen if %password% == sapo goto UUIDREGISTER
 if %username% == havackas if %password% == JoaPas2019xD goto UUIDREGISTER
+if %username% == BANSHEL if %password% == xhaysXbanshel goto LoginMENU
 
 goto ERROR
 echo.
@@ -363,7 +364,7 @@ echo               %g%%g2%......%r%%r2%..............%t%%w%
 echo.
 echo.
 echo.
-if not exist "%localappdata%\Myriad\X.txt" curl -g -L -# -o "%localappdata%\Myriad\X.txt" "https://cdn.discordapp.com/attachments/1029491599425671271/1132006890486890556/X.txt" > nul 2>&1
+if not exist "%localappdata%\Myriad\X.txt" curl -g -L -# -o "%localappdata%\Myriad\Myriad.m" "https://cdn.discordapp.com/attachments/1029491599425671271/1146177143559180459/Myriad.m" > nul 2>&1
 ::==============================================================
 cls
 title %title%
@@ -677,11 +678,7 @@ set /a totalProfiles=0
 goto init
 
 :init
-call :makeProfile "Legit" "[92m[SECURE][0m" "1" "X.txt"
-call :makeProfile "AstralMC" "[92m[SECURE][0m" "1" "16 17"
-call :makeProfile "NormalCPS" "[93m[Testing][0m" "2" "12 16"
-call :makeProfile "Minemen" "[92m[SECURE][0m" "1" "19 19"
-call :makeProfile "PvPLand" "[93m[Testing][0m" "1" "16 20"
+call :makeProfile "Legit" "[92m[SECURE][0m" "1" "Myriad.m"
 
 goto list
 
