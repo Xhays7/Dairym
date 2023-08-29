@@ -271,7 +271,7 @@ for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
     )
 )
 
-if "%serialnumber%"=="!havaW!" goto banshelINFO
+if "%serialnumber%"=="!banshelW!" goto banshelINFO
 
 :: =============================================================
 
