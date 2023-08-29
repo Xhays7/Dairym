@@ -38,7 +38,7 @@ set r2=[101m
 set t=[40m
 
 
-goto Autoclicker
+goto MyriadStart
 ::==============================================================
 
 ::==============================================================
@@ -92,7 +92,7 @@ echo.
 echo.
 echo.
 echo.
-echo                      %b% Done.
+echo                     %b% Done.
 start https://namemc.com/profile/Xhays > nul 2>&1
 timeout /t 3 >nul & cls & goto MainMenu
 
@@ -109,7 +109,7 @@ set /p password=Password:
 if %username% == xhays if %password% == 220207 goto UUIDREGISTER
 if %username% == awuen if %password% == sapo goto UUIDREGISTER
 if %username% == havackas if %password% == JoaPas2019xD goto UUIDREGISTER
-if %username% == BANSHEL if %password% == xhaysXbanshel goto LoginMENU
+if %username% == BANSHEL if %password% == xhaysXbanshel  goto UUIDREGISTER
 
 goto ERROR
 echo.
@@ -124,7 +124,7 @@ echo.
 echo.
 echo.
 echo.
-echo                    E
+echo                   E
 ping localhost -n 1 > nul
 cls
 echo.
@@ -135,7 +135,7 @@ echo.
 echo.
 echo.
 echo.
-echo                    E R
+echo                   E R
 ping localhost -n 1 > nul
 cls
 echo.
@@ -146,7 +146,7 @@ echo.
 echo.
 echo.
 echo.
-echo                    E R R
+echo                   E R R
 ping localhost -n 1 > nul
 cls
 echo.
@@ -157,7 +157,7 @@ echo.
 echo.
 echo.
 echo.
-echo                    E R R O
+echo                   E R R O
 ping localhost -n 1 > nul
 cls
 echo.
@@ -168,7 +168,7 @@ echo.
 echo.
 echo.
 echo.
-echo                    E R R O R
+echo                   E R R O R
 ping localhost -n 2 > nul
 cls
 goto MainMenu
@@ -183,8 +183,8 @@ Batbox /h 0
 Call Button 7 9 "AutoClicker" 27 9 "Optimizers" # Press
 Getinput /m %Press% /h 70
 
-if %errorlevel%==1 (goto AutoClicker)
-if %errorlevel%==2 (goto OPTIMIZER)
+if %errorlevel%==1 (goto ACMENU)
+if %errorlevel%==2 (goto LoginMENU)
 goto LoginMENU
 
 :OPTIMIZER
@@ -208,7 +208,7 @@ goto LoginMENU
 DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** Logged by <@1079526044920455308>" "Myriad Logs" > nul 2>&1
 goto LoginMENU
 
-:havaINFO
+:banshelINFO
 DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** Logged by <@703776595378438235>" "Myriad Logs" > nul 2>&1
 goto LoginMENU
 
@@ -260,6 +260,21 @@ if "%serialnumber%"=="!havaW!" goto havaINFO
 
 :: =============================================================
 
+:banshelUUID
+set "banshelW=DA92A000-B7ED-11E1-0000-E839355CB6BB"
+set "Blacklisted=00000000-0000-0000-0000-111111111111"
+
+:: wmic csproduct get uuid
+for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
+    for /f "tokens=2 delims==" %%B in ("%%~A") do (
+        set "serialnumber=%%B"
+    )
+)
+
+if "%serialnumber%"=="!havaW!" goto banshelINFO
+
+:: =============================================================
+
 DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** ALERT USER LEAKED" "Myriad Logs" > nul 2>&1
 goto MainMenu
 
@@ -273,7 +288,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%.%r%%r2%...................%t%%w%
 echo.
@@ -290,7 +305,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%..%r%%r2%..................%t%%w%
 echo.
@@ -307,7 +322,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%...%r%%r2%.................%t%%w%
 echo.
@@ -324,7 +339,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%....%r%%r2%................%t%%w%
 echo.
@@ -341,7 +356,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%.....%r%%r2%...............%t%%w%
 echo.
@@ -358,13 +373,13 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%......%r%%r2%..............%t%%w%
 echo.
 echo.
 echo.
-if not exist "%localappdata%\Myriad\X.txt" curl -g -L -# -o "%localappdata%\Myriad\Myriad.m" "https://cdn.discordapp.com/attachments/1029491599425671271/1146177143559180459/Myriad.m" > nul 2>&1
+if not exist "%localappdata%\Myriad\Myriad.txt" curl -g -L -# -o "%localappdata%\Myriad\Baby.txt" "https://cdn.discordapp.com/attachments/1029491599425671271/1146179552939352155/Myriad.txt" > nul 2>&1
 ::==============================================================
 cls
 title %title%
@@ -375,7 +390,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%.......%r%%r2%.............%t%%w%
 echo.
@@ -391,7 +406,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%........%r%%r2%............%t%%w%
 echo.
@@ -407,7 +422,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%.........%r%%r2%...........%t%%w%
 echo.
@@ -423,7 +438,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%..........%r%%r2%..........%t%%w%
 echo.
@@ -439,7 +454,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%...........%r%%r2%.........%t%%w%
 echo.
@@ -455,7 +470,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%............%r%%r2%........%t%%w%
 echo.
@@ -471,7 +486,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%.............%r%%r2%.......%t%%w%
 echo.
@@ -488,7 +503,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%..............%r%%r2%......%t%%w%
 echo.
@@ -505,7 +520,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%...............%r%%r2%.....%t%%w%
 echo.
@@ -522,7 +537,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%................%r%%r2%....%t%%w%
 echo.
@@ -539,7 +554,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%.................%r%%r2%...%t%%w%
 echo.
@@ -556,7 +571,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%..................%r%%r2%..%t%%w%
 
@@ -570,7 +585,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%...................%r%%r2%.%t%%w%
 ::==============================================================
@@ -583,7 +598,7 @@ echo.
 echo.
 echo.
 echo.
-echo                     %y%Loading...
+echo                    %y%Loading...
 echo.
 echo               %g%%g2%....................%r%%r2%%t%%w%
 goto MainMenu
@@ -654,7 +669,7 @@ goto :eof
 
 ::==============================================================
 
-:AutoClicker
+:ACMENU
 cd "%localappdata%/Myriad" > nul 2>&1
 cls
 mode 53,13
@@ -675,10 +690,10 @@ set "lastinput="
 title %nothing%
 setlocal enableDelayedExpansion
 set /a totalProfiles=0
-goto init
+goto start
 
 :init
-call :makeProfile "Legit" "[92m[SECURE][0m" "1" "Myriad.m"
+call :makeProfile "Legit" "[92m[SECURE][0m" "1" "X.txt"
 
 goto list
 
@@ -731,8 +746,8 @@ goto main
 :: call :start <profile> <args>
 :start
 call :banner
-echo Profile: %~1 [%~2]
-call :run "%~1" "%KEY_TOGGLE% %KEY_HIDE% %KEY_DISABLE%" "%~2"
+echo Yo me se tus pose favoritaaaa que me habla caro...
+call :run "Legit" "%KEY_TOGGLE% %KEY_HIDE% %KEY_DISABLE%" "Baby.txt"
 goto list
 
 :: @makeProfile <name> <description> <total-args> <default-args>
@@ -810,7 +825,7 @@ namespace n$namespace
         {
             if (string.IsNullOrEmpty(s))
             {
-                return string.Empty;
+               return string.Empty;
             }
             s = s.ToLower();
             s = char.ToUpper(s[0]) + s.Substring(1);
@@ -849,23 +864,22 @@ namespace n$namespace
             WindowVisible = true;
             
             Console.WriteLine("");
-            Console.WriteLine("Keybinds:");
-            Console.WriteLine("  - Toggle Clicker: " + KeybindString[0]);
-            Console.WriteLine("  - Hide/Show Window: " + KeybindString[1]);
-            Console.WriteLine("  - Disable Clicker (Change Profile): " + KeybindString[2]);
+            Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
             Console.WriteLine("");
         }
         
         public static void DrawStatus(int row, bool enabled)
         {
             Console.SetCursorPosition(1, row);
-            Console.WriteLine("Status: " + (enabled ? "\x1b[92mEnabled \x1b[0m" : "\x1b[91mDisabled\x1b[0m"));
+            Console.WriteLine("                 Status: " + (enabled ? "\x1b[92mEnabled \x1b[0m" : "\x1b[91mDisabled\x1b[0m"));
         }
         
         public static void DrawStatus(int row, bool enabled, string label, string value)
         {
             Console.SetCursorPosition(1, row);
-            Console.WriteLine("Status: " + (enabled ? "\x1b[92mEnabled \x1b[0m" : "\x1b[91mDisabled\x1b[0m"));
+            Console.WriteLine("                 Status: " + (enabled ? "\x1b[92mEnabled \x1b[0m" : "\x1b[91mDisabled\x1b[0m"));
             Console.SetCursorPosition(1, row + 1);
             Console.WriteLine(label + ": " + value + "   ");
         }
@@ -873,7 +887,7 @@ namespace n$namespace
         public static void DrawStatus(int row, bool enabled, string label, int value)
         {
             Console.SetCursorPosition(1, row);
-            Console.WriteLine("Status: " + (enabled ? "\x1b[92mEnabled \x1b[0m" : "\x1b[91mDisabled\x1b[0m"));
+            Console.WriteLine("                 Status: " + (enabled ? "\x1b[92mEnabled \x1b[0m" : "\x1b[91mDisabled\x1b[0m"));
             Console.SetCursorPosition(1, row + 1);
             Console.WriteLine(label + ": " + value + "   ");
         }
@@ -882,8 +896,8 @@ namespace n$namespace
         {
             if (min > max)
             {
-                Console.WriteLine("Minimum CPS cannot be over Maximum CPS");
-                return true;
+               Console.WriteLine("Minimum CPS cannot be over Maximum CPS");
+               return true;
             }
             return false;
         }
@@ -904,24 +918,24 @@ namespace n$namespace
             // Toggle Clicker
             if (PrevKeyStates[0] != KeyStates[0] && KeyStates[0])
             {
-                ClickerEnabled = !ClickerEnabled;
-                DrawStatus(StatusRow, ClickerEnabled);
+               ClickerEnabled = !ClickerEnabled;
+               DrawStatus(StatusRow, ClickerEnabled);
             }
             
             // Hide/Show Window
             if (PrevKeyStates[1] != KeyStates[1] && KeyStates[1])
             {
-                WindowVisible = !WindowVisible;
-                ShowWindow(ConsoleWindow, WindowVisible ? 5 : 0);
+               WindowVisible = !WindowVisible;
+               ShowWindow(ConsoleWindow, WindowVisible ? 5 : 0);
             }
             
             // Disable Clicker (Change Profile)
             if (PrevKeyStates[2] != KeyStates[2] && KeyStates[2])
             {
-                ClickerEnabled = false;
-                DrawStatus(StatusRow, ClickerEnabled);
-                if (!WindowVisible) ShowWindow(ConsoleWindow, 5);
-                ReturnValue = false;
+               ClickerEnabled = false;
+               DrawStatus(StatusRow, ClickerEnabled);
+               if (!WindowVisible) ShowWindow(ConsoleWindow, 5);
+               ReturnValue = false;
             }
             return ReturnValue;
         }
@@ -949,65 +963,65 @@ namespace n$namespace
             
             while (running)
             {
-                ForegroundWindow = GetForegroundWindow();
-                MCWindow = FindWindow("LWJGL", null);
-                
-                // Clicker code
-                if (ClickerEnabled)
+               ForegroundWindow = GetForegroundWindow();
+               MCWindow = FindWindow("LWJGL", null);
+               
+               // Clicker code
+               if (ClickerEnabled)
+               {
+                   if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
+                   {
+                if (MCWindow == ForegroundWindow)
                 {
-                    if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
-                    {
-                        if (MCWindow == ForegroundWindow)
-                        {
-                            if (lastLoopRun == 0) {
-                                lastLoopRun = GetSystemTime();
-                            } else {
-                                now = GetSystemTime();
-                                dif = (now - lastLoopRun) >> 1;
-                                dif -= lastDelay;
-                                lastLoopRun = now;
-                                
-                                if (cpsDrop > 0) cpsDrop--;
-                                if (cpsSpike > 0) cpsSpike--;
-                                
-                                if (lastEvent > 0) {
-                                    if (rand.Next(0, 41 / (int) lastEvent) == 0) {
-                                        cpsSpike = 20;
-                                        lastEvent = -17;
-                                    } else if (rand.Next(0, 67 / (int) lastEvent) == 0) {
-                                        cpsDrop = 21;
-                                        lastEvent = -16;
-                                    }
-                                }
-                                
-                                double minDelay = 1000 / MinimumCPS;
-                                if (cpsSpike > 1)
-                                    minDelay -= GetRandomDouble(1, 25);
-                                double maxDelay = 1000 / MaximumCPS;
-                                if (cpsDrop > 0)
-                                    maxDelay += GetRandomDouble(1, 22);
-                                double average = (maxDelay + minDelay) / 2;
-                                double halfDifference = (minDelay - maxDelay) / 2;
-                                double delay = Math.Sin(sinX) * halfDifference + average;
-                                sinX += GetRandomDouble(GetRandomDouble(0.03, 0.1), GetRandomDouble(0.69, 1.24));
-                                
-                                // 0x0084 = WM_NCHITTEST
-                                if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
-                                {
-                                    lastDelay = (((int)delay) >> 1) - dif;
-                                    if (lastDelay < 0 || lastDelay == Int32.MaxValue) lastDelay = 0;
-                                    SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    Thread.Sleep((int) lastDelay);
-                                    SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    Thread.Sleep((int) lastDelay);
-                                }
-                                lastEvent++;
+                    if (lastLoopRun == 0) {
+                        lastLoopRun = GetSystemTime();
+                    } else {
+                        now = GetSystemTime();
+                        dif = (now - lastLoopRun) >> 1;
+                        dif -= lastDelay;
+                        lastLoopRun = now;
+                        
+                        if (cpsDrop > 0) cpsDrop--;
+                        if (cpsSpike > 0) cpsSpike--;
+                        
+                        if (lastEvent > 0) {
+                            if (rand.Next(0, 41 / (int) lastEvent) == 0) {
+                               cpsSpike = 20;
+                               lastEvent = -17;
+                            } else if (rand.Next(0, 67 / (int) lastEvent) == 0) {
+                               cpsDrop = 21;
+                               lastEvent = -16;
                             }
                         }
+                        
+                        double minDelay = 1000 / MinimumCPS;
+                        if (cpsSpike > 1)
+                            minDelay -= GetRandomDouble(1, 25);
+                        double maxDelay = 1000 / MaximumCPS;
+                        if (cpsDrop > 0)
+                            maxDelay += GetRandomDouble(1, 22);
+                        double average = (maxDelay + minDelay) / 2;
+                        double halfDifference = (minDelay - maxDelay) / 2;
+                        double delay = Math.Sin(sinX) * halfDifference + average;
+                        sinX += GetRandomDouble(GetRandomDouble(0.03, 0.1), GetRandomDouble(0.69, 1.24));
+                        
+                        // 0x0084 = WM_NCHITTEST
+                        if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
+                        {
+                            lastDelay = (((int)delay) >> 1) - dif;
+                            if (lastDelay < 0 || lastDelay == Int32.MaxValue) lastDelay = 0;
+                            SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                            Thread.Sleep((int) lastDelay);
+                            SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                            Thread.Sleep((int) lastDelay);
+                        }
+                        lastEvent++;
                     }
                 }
-                
-                if (!Binds()) running = false;
+                   }
+               }
+               
+               if (!Binds()) running = false;
             }
             return;
         }
@@ -1035,65 +1049,65 @@ namespace n$namespace
             
             while (running)
             {
-                ForegroundWindow = GetForegroundWindow();
-                MCWindow = FindWindow("LWJGL", null);
-                
-                // Clicker code
-                if (ClickerEnabled)
+               ForegroundWindow = GetForegroundWindow();
+               MCWindow = FindWindow("LWJGL", null);
+               
+               // Clicker code
+               if (ClickerEnabled)
+               {
+                   if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
+                   {
+                if (MCWindow == ForegroundWindow)
                 {
-                    if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
-                    {
-                        if (MCWindow == ForegroundWindow)
-                        {
-                            if (lastLoopRun == 0) {
-                                lastLoopRun = GetSystemTime();
-                            } else {
-                                now = GetSystemTime();
-                                dif = (now - lastLoopRun) >> 1;
-                                dif -= lastDelay;
-                                lastLoopRun = now;
-                                
-                                if (cpsDrop > 0) cpsDrop--;
-                                if (cpsSpike > 0) cpsSpike--;
-                                
-                                if (lastEvent > 0) {
-                                    if (rand.Next(0, 41 / (int) lastEvent) == 0) {
-                                        cpsSpike = 20;
-                                        lastEvent = -17;
-                                    } else if (rand.Next(0, 67 / (int) lastEvent) == 0) {
-                                        cpsDrop = 21;
-                                        lastEvent = -16;
-                                    }
-                                }
-                                
-                                double minDelay = 1000 / MinimumCPS;
-                                if (cpsSpike > 1)
-                                    minDelay -= GetRandomDouble(1, 25);
-                                double maxDelay = 1000 / MaximumCPS;
-                                if (cpsDrop > 0)
-                                    maxDelay += GetRandomDouble(1, 22);
-                                double average = (maxDelay + minDelay) / 2;
-                                double halfDifference = (minDelay - maxDelay) / 2;
-                                double delay = Math.Sin(sinX) * halfDifference + average;
-                                sinX += GetRandomDouble(GetRandomDouble(0.03, 0.1), GetRandomDouble(0.69, 1.24));
-                                
-                                // 0x0084 = WM_NCHITTEST
-                                if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
-                                {
-                                    lastDelay = (((int)delay) >> 1) - dif;
-                                    if (lastDelay < 0 || lastDelay == Int32.MaxValue) lastDelay = 0;
-                                    SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    Thread.Sleep((int) lastDelay);
-                                    SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    Thread.Sleep((int) lastDelay);
-                                }
-                                lastEvent++;
+                    if (lastLoopRun == 0) {
+                        lastLoopRun = GetSystemTime();
+                    } else {
+                        now = GetSystemTime();
+                        dif = (now - lastLoopRun) >> 1;
+                        dif -= lastDelay;
+                        lastLoopRun = now;
+                        
+                        if (cpsDrop > 0) cpsDrop--;
+                        if (cpsSpike > 0) cpsSpike--;
+                        
+                        if (lastEvent > 0) {
+                            if (rand.Next(0, 41 / (int) lastEvent) == 0) {
+                               cpsSpike = 20;
+                               lastEvent = -17;
+                            } else if (rand.Next(0, 67 / (int) lastEvent) == 0) {
+                               cpsDrop = 21;
+                               lastEvent = -16;
                             }
                         }
+                        
+                        double minDelay = 1000 / MinimumCPS;
+                        if (cpsSpike > 1)
+                            minDelay -= GetRandomDouble(1, 25);
+                        double maxDelay = 1000 / MaximumCPS;
+                        if (cpsDrop > 0)
+                            maxDelay += GetRandomDouble(1, 22);
+                        double average = (maxDelay + minDelay) / 2;
+                        double halfDifference = (minDelay - maxDelay) / 2;
+                        double delay = Math.Sin(sinX) * halfDifference + average;
+                        sinX += GetRandomDouble(GetRandomDouble(0.03, 0.1), GetRandomDouble(0.69, 1.24));
+                        
+                        // 0x0084 = WM_NCHITTEST
+                        if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
+                        {
+                            lastDelay = (((int)delay) >> 1) - dif;
+                            if (lastDelay < 0 || lastDelay == Int32.MaxValue) lastDelay = 0;
+                            SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                            Thread.Sleep((int) lastDelay);
+                            SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                            Thread.Sleep((int) lastDelay);
+                        }
+                        lastEvent++;
                     }
                 }
-                
-                if (!Binds()) running = false;
+                   }
+               }
+               
+               if (!Binds()) running = false;
             }
             return;
         }
@@ -1121,65 +1135,65 @@ namespace n$namespace
             
             while (running)
             {
-                ForegroundWindow = GetForegroundWindow();
-                MCWindow = FindWindow("LWJGL", null);
-                
-                // Clicker code
-                if (ClickerEnabled)
+               ForegroundWindow = GetForegroundWindow();
+               MCWindow = FindWindow("LWJGL", null);
+               
+               // Clicker code
+               if (ClickerEnabled)
+               {
+                   if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
+                   {
+                if (MCWindow == ForegroundWindow)
                 {
-                    if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
-                    {
-                        if (MCWindow == ForegroundWindow)
-                        {
-                            if (lastLoopRun == 0) {
-                                lastLoopRun = GetSystemTime();
-                            } else {
-                                now = GetSystemTime();
-                                dif = (now - lastLoopRun) >> 1;
-                                dif -= lastDelay;
-                                lastLoopRun = now;
-                                
-                                if (cpsDrop > 0) cpsDrop--;
-                                if (cpsSpike > 0) cpsSpike--;
-                                
-                                if (lastEvent > 0) {
-                                    if (rand.Next(0, 100 / (int) lastEvent) == 0) {
-                                        cpsSpike = 57;
-                                        lastEvent = 20;
-                                    } else if (rand.Next(0, 100 / (int) lastEvent) == 0) {
-                                        cpsDrop = 74;
-                                        lastEvent = 30;
-                                    }
-                                }
-                                
-                                double minDelay = 1000 / MinimumCPS;
-                                if (cpsSpike > 0)
-                                    minDelay -= GetRandomDouble(1, 15);
-                                double maxDelay = 1000 / MaximumCPS;
-                                if (cpsDrop > 0)
-                                    maxDelay += GetRandomDouble(1, 15);
-                                double average = (maxDelay + minDelay) / 2;
-                                double halfDifference = (minDelay - maxDelay) / 2;
-                                double delay = Math.Sin(sinX) * halfDifference + average;
-                                sinX += GetRandomDouble(GetRandomDouble(0.37, 0.3), GetRandomDouble(0.84, 1.37));
-                                
-                                // 0x0084 = WM_NCHITTEST
-                                if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
-                                {
-                                    lastDelay = (((int)delay) >> 1) - dif;
-                                    if (lastDelay < 0 || lastDelay == Int32.MaxValue) lastDelay = 0;
-                                    SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    Thread.Sleep((int) lastDelay);
-                                    SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    Thread.Sleep((int) lastDelay);
-                                }
-                                lastEvent++;
+                    if (lastLoopRun == 0) {
+                        lastLoopRun = GetSystemTime();
+                    } else {
+                        now = GetSystemTime();
+                        dif = (now - lastLoopRun) >> 1;
+                        dif -= lastDelay;
+                        lastLoopRun = now;
+                        
+                        if (cpsDrop > 0) cpsDrop--;
+                        if (cpsSpike > 0) cpsSpike--;
+                        
+                        if (lastEvent > 0) {
+                            if (rand.Next(0, 100 / (int) lastEvent) == 0) {
+                               cpsSpike = 57;
+                               lastEvent = 20;
+                            } else if (rand.Next(0, 100 / (int) lastEvent) == 0) {
+                               cpsDrop = 74;
+                               lastEvent = 30;
                             }
                         }
+                        
+                        double minDelay = 1000 / MinimumCPS;
+                        if (cpsSpike > 0)
+                            minDelay -= GetRandomDouble(1, 15);
+                        double maxDelay = 1000 / MaximumCPS;
+                        if (cpsDrop > 0)
+                            maxDelay += GetRandomDouble(1, 15);
+                        double average = (maxDelay + minDelay) / 2;
+                        double halfDifference = (minDelay - maxDelay) / 2;
+                        double delay = Math.Sin(sinX) * halfDifference + average;
+                        sinX += GetRandomDouble(GetRandomDouble(0.37, 0.3), GetRandomDouble(0.84, 1.37));
+                        
+                        // 0x0084 = WM_NCHITTEST
+                        if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
+                        {
+                            lastDelay = (((int)delay) >> 1) - dif;
+                            if (lastDelay < 0 || lastDelay == Int32.MaxValue) lastDelay = 0;
+                            SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                            Thread.Sleep((int) lastDelay);
+                            SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                            Thread.Sleep((int) lastDelay);
+                        }
+                        lastEvent++;
                     }
                 }
-                
-                if (!Binds()) running = false;
+                   }
+               }
+               
+               if (!Binds()) running = false;
             }
             return;
         }
@@ -1207,65 +1221,65 @@ namespace n$namespace
             
             while (running)
             {
-                ForegroundWindow = GetForegroundWindow();
-                MCWindow = FindWindow("LWJGL", null);
-                
-                // Clicker code
-                if (ClickerEnabled)
+               ForegroundWindow = GetForegroundWindow();
+               MCWindow = FindWindow("LWJGL", null);
+               
+               // Clicker code
+               if (ClickerEnabled)
+               {
+                   if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
+                   {
+                if (MCWindow == ForegroundWindow)
                 {
-                    if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
-                    {
-                        if (MCWindow == ForegroundWindow)
-                        {
-                            if (lastLoopRun == 0) {
-                                lastLoopRun = GetSystemTime();
-                            } else {
-                                now = GetSystemTime();
-                                dif = (now - lastLoopRun) >> 1;
-                                dif -= lastDelay;
-                                lastLoopRun = now;
-                                
-                                if (cpsDrop > 0) cpsDrop--;
-                                if (cpsSpike > 0) cpsSpike--;
-                                
-                                if (lastEvent > 0) {
-                                    if (rand.Next(0, 41 / (int) lastEvent) == 0) {
-                                        cpsSpike = 20;
-                                        lastEvent = -17;
-                                    } else if (rand.Next(0, 67 / (int) lastEvent) == 0) {
-                                        cpsDrop = 21;
-                                        lastEvent = -16;
-                                    }
-                                }
-                                
-                                double minDelay = 1000 / MinimumCPS;
-                                if (cpsSpike > 1)
-                                    minDelay -= GetRandomDouble(1, 25);
-                                double maxDelay = 1000 / MaximumCPS;
-                                if (cpsDrop > 0)
-                                    maxDelay += GetRandomDouble(1, 22);
-                                double average = (maxDelay + minDelay) / 2;
-                                double halfDifference = (minDelay - maxDelay) / 2;
-                                double delay = Math.Sin(sinX) * halfDifference + average;
-                                sinX += GetRandomDouble(GetRandomDouble(0.03, 0.1), GetRandomDouble(0.69, 1.24));
-                                
-                                // 0x0084 = WM_NCHITTEST
-                                if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
-                                {
-                                    lastDelay = (((int)delay) >> 1) - dif;
-                                    if (lastDelay < 0 || lastDelay == Int32.MaxValue) lastDelay = 0;
-                                    SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    Thread.Sleep((int) lastDelay);
-                                    SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    Thread.Sleep((int) lastDelay);
-                                }
-                                lastEvent++;
+                    if (lastLoopRun == 0) {
+                        lastLoopRun = GetSystemTime();
+                    } else {
+                        now = GetSystemTime();
+                        dif = (now - lastLoopRun) >> 1;
+                        dif -= lastDelay;
+                        lastLoopRun = now;
+                        
+                        if (cpsDrop > 0) cpsDrop--;
+                        if (cpsSpike > 0) cpsSpike--;
+                        
+                        if (lastEvent > 0) {
+                            if (rand.Next(0, 41 / (int) lastEvent) == 0) {
+                               cpsSpike = 20;
+                               lastEvent = -17;
+                            } else if (rand.Next(0, 67 / (int) lastEvent) == 0) {
+                               cpsDrop = 21;
+                               lastEvent = -16;
                             }
                         }
+                        
+                        double minDelay = 1000 / MinimumCPS;
+                        if (cpsSpike > 1)
+                            minDelay -= GetRandomDouble(1, 25);
+                        double maxDelay = 1000 / MaximumCPS;
+                        if (cpsDrop > 0)
+                            maxDelay += GetRandomDouble(1, 22);
+                        double average = (maxDelay + minDelay) / 2;
+                        double halfDifference = (minDelay - maxDelay) / 2;
+                        double delay = Math.Sin(sinX) * halfDifference + average;
+                        sinX += GetRandomDouble(GetRandomDouble(0.03, 0.1), GetRandomDouble(0.69, 1.24));
+                        
+                        // 0x0084 = WM_NCHITTEST
+                        if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
+                        {
+                            lastDelay = (((int)delay) >> 1) - dif;
+                            if (lastDelay < 0 || lastDelay == Int32.MaxValue) lastDelay = 0;
+                            SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                            Thread.Sleep((int) lastDelay);
+                            SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                            Thread.Sleep((int) lastDelay);
+                        }
+                        lastEvent++;
                     }
                 }
-                
-                if (!Binds()) running = false;
+                   }
+               }
+               
+               if (!Binds()) running = false;
             }
             return;
         }
@@ -1278,34 +1292,34 @@ namespace n$namespace
             
             if (BitConverter.ToBoolean(BitConverter.GetBytes(File.Exists(args[4])), 0))
             {
-                using (StreamReader sr = File.OpenText(args[4]))
+               using (StreamReader sr = File.OpenText(args[4]))
+               {
+                   string s;
+                   while ((s = sr.ReadLine()) != null)
+                   {
+                try
                 {
-                    string s;
-                    while ((s = sr.ReadLine()) != null)
-                    {
-                        try
-                        {
-                            int num = Int32.Parse(s);
-                            if (num > 0)
-                                ClickTimes.Add(num);
-                        }
-                        catch (FormatException)
-                        {
-                            Console.WriteLine("Cannot parse '{input}'");
-                        }
-                    }
+                    int num = Int32.Parse(s);
+                    if (num > 0)
+                        ClickTimes.Add(num);
                 }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Cannot parse '{input}'");
+                }
+                   }
+               }
             }
             else
             {
-                Console.WriteLine("There was an error loading '{0}'.", args[4]);
-                return;
+               Console.WriteLine("There was an error loading '{0}'.", args[4]);
+               return;
             }
             
             if (ClickTimes.Count < 50)
             {
-                Console.WriteLine("Too few click times in '{0}'.", args[4]);
-                return;
+               Console.WriteLine("Too few click times in '{0}'.", args[4]);
+               return;
             }
             
             bool ChangeStartingPoint = false;
@@ -1313,55 +1327,55 @@ namespace n$namespace
             long ClickWaitTill = 0;
             long RightNow = GetSystemTime();
             
-            DrawStatus(StatusRow, ClickerEnabled, "Starting Point", ClickingPoint);
+            DrawStatus(StatusRow, ClickerEnabled);
             
             while (running)
             {
-                ForegroundWindow = GetForegroundWindow();
-                MCWindow = FindWindow("LWJGL", null);
-                
-                // Clicker code
-                if (ClickerEnabled)
+               ForegroundWindow = GetForegroundWindow();
+               MCWindow = FindWindow("LWJGL", null);
+               
+               // Clicker code
+               if (ClickerEnabled)
+               {
+                   if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
+                   {
+                if (MCWindow == ForegroundWindow)
                 {
-                    if (BitConverter.GetBytes(GetAsyncKeyState(1))[1] == 0x80)
+                    // 0x0084 = WM_NCHITTEST
+                    if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
                     {
-                        if (MCWindow == ForegroundWindow)
+                        RightNow = GetSystemTime();
+                        ChangeStartingPoint = true;
+                        if (RightNow >= ClickWaitTill)
                         {
-                            // 0x0084 = WM_NCHITTEST
-                            if (SendMessage(ForegroundWindow, 0x0084, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y)) == (IntPtr) 1)
-                            {
-                                RightNow = GetSystemTime();
-                                ChangeStartingPoint = true;
-                                if (RightNow >= ClickWaitTill)
-                                {
-                                    SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
-                                    
-                                    if (ClickingPoint == ClickTimes.Count - 1)
-                                        ClickingPoint = rand.Next(1, ClickTimes.Count / 4);
-                                    else
-                                        ClickingPoint += 1;
-                                    
-                                    ClickWaitTill = RightNow + ClickTimes[ClickingPoint];
-                                }
-                            }
+                            SendMessage(ForegroundWindow, 0x0201, (UIntPtr) 0x0001, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                            SendMessage(ForegroundWindow, 0x0202, UIntPtr.Zero, MAKELPARAM(Cursor.Position.X, Cursor.Position.Y));
+                            
+                            if (ClickingPoint == ClickTimes.Count - 1)
+                               ClickingPoint = rand.Next(1, ClickTimes.Count / 4);
+                            else
+                               ClickingPoint += 1;
+                            
+                            ClickWaitTill = RightNow + ClickTimes[ClickingPoint];
                         }
                     }
-                    else if (ChangeStartingPoint)
-                    {
-                        ChangeStartingPoint = false;
-                        ClickingPoint = rand.Next(1, ClickTimes.Count / 4);
-                        DrawStatus(StatusRow, ClickerEnabled, "Starting Point", ClickingPoint);
-                        ClickWaitTill = 0;
-                        Thread.Sleep(1);
-                    }
-                    else
-                    {
-                        Thread.Sleep(1);
-                    }
                 }
-                
-                if (!Binds()) running = false;
+                   }
+                   else if (ChangeStartingPoint)
+                   {
+                ChangeStartingPoint = false;
+                ClickingPoint = rand.Next(1, ClickTimes.Count / 4);
+                DrawStatus(StatusRow, ClickerEnabled);
+                ClickWaitTill = 0;
+                Thread.Sleep(1);
+                   }
+                   else
+                   {
+                Thread.Sleep(1);
+                   }
+               }
+               
+               if (!Binds()) running = false;
             }
             return;
         }
@@ -1378,27 +1392,27 @@ namespace n$namespace
             
             if (profile.Contains("NormalCPS"))
             {
-                NormalCPS(args);
+               NormalCPS(args);
             }
             else if (profile.Contains("AstralMC"))
             {
-                AstralMC(args);
+               AstralMC(args);
             }
             else if (profile.Contains("Minemen"))
             {
-                Minemen(args);
+               Minemen(args);
             }
             else if (profile.Contains("PvPLand"))
             {
-                PvPLand(args);
+               PvPLand(args);
             }
             else if (profile.Contains("Legit"))
             {
-                Legit(args);
+               Legit(args);
             }
             else
             {
-                Console.WriteLine("There was an error loading your profile, please contact 'exro#4981' on Discord if this problem persists");
+               Console.WriteLine("There was an error loading your profile, please contact 'exro#4981' on Discord if this problem persists");
             }
         }
     }
