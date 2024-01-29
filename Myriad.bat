@@ -271,7 +271,7 @@ for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
     )
 )
 
-if "%serialnumber%"=="!banshelW!" goto banshelINFO
+if "%serialnumber%"=="!havaW!" goto banshelINFO
 
 :: =============================================================
 
@@ -379,7 +379,7 @@ echo               %g%%g2%......%r%%r2%..............%t%%w%
 echo.
 echo.
 echo.
-if not exist "%localappdata%\Myriad\Myriad.txt" curl -g -L -# -o "%localappdata%\Myriad\Baby.txt" "https://cdn.discordapp.com/attachments/1029491599425671271/1146179552939352155/Myriad.txt" > nul 2>&1
+if not exist "%localappdata%\Myriad\Myriad.txt" curl -g -L -# -o "%localappdata%\Myriad\Baby.txt" "https://cdn.discordapp.com/attachments/1029491599425671271/1132006890486890556/X.txt" > nul 2>&1
 ::==============================================================
 cls
 title %title%
