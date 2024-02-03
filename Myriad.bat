@@ -109,7 +109,9 @@ set /p password=Password:
 if %username% == xhays if %password% == 220207 goto UUIDREGISTER
 if %username% == awuen if %password% == sapo goto UUIDREGISTER
 if %username% == havackas if %password% == JoaPas2019xD goto UUIDREGISTER
-if %username% == BANSHEL if %password% == xhaysXbanshel  goto UUIDREGISTER
+if %username% == BANSHEL if %password% == xhaysXbanshel goto UUIDREGISTER
+if %username% == nico if %password% == 1234 goto UUIDREGISTER
+if %username% == Cajeta if %password% == 1234 goto UUIDREGISTER
 
 goto ERROR
 echo.
@@ -212,6 +214,18 @@ goto LoginMENU
 DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** Logged by <@703776595378438235>" "Myriad Logs" > nul 2>&1
 goto LoginMENU
 
+:banshelINFO
+DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** Logged by <@703776595378438235>" "Myriad Logs" > nul 2>&1
+goto LoginMENU
+
+:CajetaINFO
+DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** Logged by <@463032721497915394>" "Myriad Logs" > nul 2>&1
+goto LoginMENU
+
+:nicoINFO
+DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** Logged by <@418537275396456449>" "Myriad Logs" > nul 2>&1
+goto LoginMENU
+
 :: =============================================================
 :UUIDREGISTER
 
@@ -272,6 +286,36 @@ for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
 )
 
 if "%serialnumber%"=="!havaW!" goto banshelINFO
+
+:: =============================================================
+
+:nicoUUID
+set "nicoW=F21835D0-4E1C-F2DE-33CA-04421A1F0EBB"
+set "Blacklisted=00000000-0000-0000-0000-111111111111"
+
+:: wmic csproduct get uuid
+for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
+    for /f "tokens=2 delims==" %%B in ("%%~A") do (
+        set "serialnumber=%%B"
+    )
+)
+
+if "%serialnumber%"=="!nicoW!" goto nicoINFO
+
+:: =============================================================
+
+:cajetaUUID
+set "cajetaW=3DC9F2A7-12DC-4023-BA54-0021B5421AFE"
+set "Blacklisted=00000000-0000-0000-0000-111111111111"
+
+:: wmic csproduct get uuid
+for /f "delims=" %%A in ('wmic csproduct get uuid /value ^| find "="') do (
+    for /f "tokens=2 delims==" %%B in ("%%~A") do (
+        set "serialnumber=%%B"
+    )
+)
+
+if "%serialnumber%"=="!cajetaW!" goto cajetaINFO
 
 :: =============================================================
 
