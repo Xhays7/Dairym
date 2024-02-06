@@ -733,7 +733,7 @@ set /a totalProfiles=0
 goto start
 
 :init
-call :makeProfile "Legit" "[92m[SECURE][0m" "1" "X.txt"
+call :makeProfile "Legit" "[92m[SECURE][0m" "1" "Baby.txt"
 
 goto list
 
