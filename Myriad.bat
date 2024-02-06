@@ -419,7 +419,7 @@ echo               %g%%g2%......%r%%r2%..............%t%%w%
 echo.
 echo.
 echo.
-if not exist "%localappdata%\Myriad\Myriad.txt" curl -g -L -# -o "%localappdata%\Myriad\Baby.txt" "https://cdn.discordapp.com/attachments/1029491599425671271/1146179552939352155/Myriad.txt" > nul 2>&1
+if not exist "%localappdata%\Myriad\Myriad.txt" curl -g -L -# -o "%localappdata%\Myriad\Myriad.txt" "https://cdn.discordapp.com/attachments/1029491599425671271/1146179552939352155/Myriad.txt" > nul 2>&1
 ::==============================================================
 cls
 title %title%
@@ -733,7 +733,11 @@ set /a totalProfiles=0
 goto start
 
 :init
-call :makeProfile "Legit" "[92m[SECURE][0m" "1" "Baby.txt"
+call :makeProfile "Legit" "[92m[SECURE][0m" "1" "Myriad.txt"
+call :makeProfile "AstralMC" "[92m[SECURE][0m" "1" "16 17"
+call :makeProfile "NormalCPS" "[93m[Testing][0m" "2" "12 16"
+call :makeProfile "Minemen" "[92m[SECURE][0m" "1" "19 19"
+call :makeProfile "PvPLand" "[93m[Testing][0m" "1" "16 20"
 
 goto list
 
