@@ -109,7 +109,7 @@ set /p password=Password:
 if %username% == xhays if %password% == 220207 goto UUIDREGISTER
 if %username% == awuen if %password% == sapo goto UUIDREGISTER
 if %username% == havackas if %password% == JoaPas2019xD goto UUIDREGISTER
-if %username% == BANSHEL if %password% == xhaysXbanshel goto UUIDREGISTER
+if %username% == BANSHEL if %password% == xhaysXbanshel  goto UUIDREGISTER
 if %username% == nico if %password% == 1234 goto UUIDREGISTER
 if %username% == Cajeta if %password% == 1234 goto UUIDREGISTER
 
@@ -208,10 +208,6 @@ goto LoginMENU
 
 :awuenINFO
 DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** Logged by <@1079526044920455308>" "Myriad Logs" > nul 2>&1
-goto LoginMENU
-
-:banshelINFO
-DCW.exe "https://discord.com/api/webhooks/1078481721802117160/Ut6dXr_ptHTV29YFy_DXgcWMWPrZyvR3-yTWNckV6ldI08SUOvr-lIqD6T19ZtqeGbdY" "**Myriad** Logged by <@703776595378438235>" "Myriad Logs" > nul 2>&1
 goto LoginMENU
 
 :banshelINFO
@@ -423,7 +419,7 @@ echo               %g%%g2%......%r%%r2%..............%t%%w%
 echo.
 echo.
 echo.
-if not exist "%localappdata%\Myriad\Myriad.txt" curl -g -L -# -o "%localappdata%\Myriad\Baby.txt" "https://cdn.discordapp.com/attachments/1029491599425671271/1132006890486890556/X.txt" > nul 2>&1
+if not exist "%localappdata%\Myriad\Myriad.txt" curl -g -L -# -o "%localappdata%\Myriad\Baby.txt" "https://cdn.discordapp.com/attachments/1029491599425671271/1146179552939352155/Myriad.txt" > nul 2>&1
 ::==============================================================
 cls
 title %title%
@@ -791,7 +787,7 @@ goto main
 :start
 call :banner
 echo Yo me se tus pose favoritaaaa que me habla caro...
-call :run "Legit" "%KEY_TOGGLE% %KEY_HIDE% %KEY_DISABLE%" "Baby.txt"
+call :makeProfile "Legit" "[92m[SECURE][0m" "1" "X.txt"
 goto list
 
 :: @makeProfile <name> <description> <total-args> <default-args>
